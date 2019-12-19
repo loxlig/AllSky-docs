@@ -16,11 +16,11 @@ import os
 
 import sphinx
 # from distutils.version import LooseVersion
-try:
-    from sphinx_astropy.conf.v1 import *
-except ImportError:
-    print('ERROR: the documentation requires the sphinx-astropy package to be installed')
-    sys.exit(1)
+# try:
+#    from sphinx_astropy.conf.v1 import *
+# except ImportError:
+#    print('ERROR: the documentation requires the sphinx-astropy package to be installed')
+#    sys.exit(1)
     
 # Get configuration information from setup.cfg
 try:
@@ -59,14 +59,14 @@ html_theme_options = {
     'logotext3': ':docs'   # white,  light
 }
 
-def check_sphinx_version(expected_version):
-    sphinx_version = LooseVersion(sphinx.__version__)
-    expected_version = LooseVersion(expected_version)
-    if sphinx_version < expected_version:
-        raise RuntimeError(
-            "At least Sphinx version {0} is required to build this "
-            "documentation.  Found {1}.".format(
-                expected_version, sphinx_version))
+# def check_sphinx_version(expected_version):
+#    sphinx_version = LooseVersion(sphinx.__version__)
+#    expected_version = LooseVersion(expected_version)
+#    if sphinx_version < expected_version:
+#        raise RuntimeError(
+#            "At least Sphinx version {0} is required to build this "
+#            "documentation.  Found {1}.".format(
+#                expected_version, sphinx_version))
 
 
 # Configuration for intersphinx: refer to the Python standard library.
@@ -86,11 +86,11 @@ def check_sphinx_version(expected_version):
 #    'h5py': ('http://docs.h5py.org/en/stable/', None)}
 
 
-intersphinx_mapping['astroquery'] = (
-    'https://astroquery.readthedocs.io/en/latest/', None)
+# intersphinx_mapping['astroquery'] = (
+#    'https://astroquery.readthedocs.io/en/latest/', None)
 
-intersphinx_mapping['syphot'] = (
-    'https://synphot.readthedocs.io/en/latest/', None)
+# intersphinx_mapping['syphot'] = (
+#    'https://synphot.readthedocs.io/en/latest/', None)
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
@@ -377,8 +377,7 @@ latex_elements['preamble'] = r"""
 # -- Options for the edit_on_github extension ---------------------------------
 
 if eval(setup_cfg.get('edit_on_github')):
-    extensions += ['sphinx_astropy.ext.edit_on_github',
-                   'sphinx.ext.intersphinx']
+    extensions += ['sphinx.ext.intersphinx']
 
     versionmod = __import__(setup_cfg['package_name'] + '.version')
     edit_on_github_project = setup_cfg['github_project']
