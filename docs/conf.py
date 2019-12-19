@@ -86,7 +86,7 @@ def check_sphinx_version(expected_version):
 #    'h5py': ('http://docs.h5py.org/en/stable/', None)}
 
 
-ntersphinx_mapping['astroquery'] = (
+intersphinx_mapping['astroquery'] = (
     'https://astroquery.readthedocs.io/en/latest/', None)
 
 intersphinx_mapping['syphot'] = (
