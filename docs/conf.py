@@ -149,9 +149,9 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'numpydoc',
-    'sphinx_astropy.ext.doctest',
-    'sphinx_astropy.ext.changelog_links',
-    'sphinx_astropy.ext.missing_static',
+    # 'sphinx_astropy.ext.doctest',
+    # 'sphinx_astropy.ext.changelog_links',
+    # 'sphinx_astropy.ext.missing_static',
     'sphinx.ext.mathjax']
 
 # try:
