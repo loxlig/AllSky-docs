@@ -17,10 +17,6 @@ from os import path
 import sphinx
 from distutils.version import LooseVersion
 
-
-# sys.path.append('/Users/lpb/documentation/AllSky')  # Works for macOS
-sys.path.append('/home/sel/documentation/AllSky')     # Works for Linux
-
 # Must keep copy of source files in /home/sel/documentation/*.py
 # in addition to the same files located in /home/sel/documentation/AllSky
 
@@ -51,20 +47,20 @@ def check_sphinx_version(expected_version):
 
 
 # Configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {
-#    'python': ('https://docs.python.org/3/',
-#               (None, 'http://data.astropy.org/intersphinx/python3.inv')),
-#    'pythonloc': ('http://docs.python.org/',
-#                  path.abspath(path.join(path.dirname(__file__), '..',
-#                                         'local', 'python3_local_links.inv'))),
-#    'numpy': ('https://docs.scipy.org/doc/numpy/',
-#              (None, 'http://data.astropy.org/intersphinx/numpy.inv')),
-#    'scipy': ('https://docs.scipy.org/doc/scipy/reference/',
-#              (None, 'http://data.astropy.org/intersphinx/scipy.inv')),
-#    'matplotlib': ('https://matplotlib.org/',
-#                   (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
-#    'astropy': ('http://docs.astropy.org/en/stable/', None),
-#    'h5py': ('http://docs.h5py.org/en/stable/', None)}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/',
+               (None, 'http://data.astropy.org/intersphinx/python3.inv')),
+    'pythonloc': ('http://docs.python.org/',
+                  path.abspath(path.join(path.dirname(__file__), '..',
+                                         'local', 'python3_local_links.inv'))),
+    'numpy': ('https://docs.scipy.org/doc/numpy/',
+              (None, 'http://data.astropy.org/intersphinx/numpy.inv')),
+    'scipy': ('https://docs.scipy.org/doc/scipy/reference/',
+              (None, 'http://data.astropy.org/intersphinx/scipy.inv')),
+    'matplotlib': ('https://matplotlib.org/',
+                   (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
+    'astropy': ('http://docs.astropy.org/en/stable/', None),
+    'h5py': ('http://docs.h5py.org/en/stable/', None)}
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
