@@ -199,7 +199,7 @@ inheritance_graph_attrs = dict(rankdir="LR", size='"6.0, 8.0"',
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'bootstrap-astropy'
+# html_theme = 'bootstrap-astropy'
 
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {
