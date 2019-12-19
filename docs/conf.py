@@ -22,20 +22,6 @@ import sphinx
 #    print('ERROR: the documentation requires the sphinx-astropy package to be installed')
 #    sys.exit(1)
     
-# Get configuration information from setup.cfg
-try:
-    from ConfigParser import ConfigParser
-except ImportError:
-    from configparser import ConfigParser
-conf = ConfigParser()
-
-conf.read([os.path.join(os.path.dirname(__file__), '..', 'setup.cfg')])
-setup_cfg = dict(conf.items('metadata'))
-
-
-# Must keep copy of source files in /home/sel/documentation/*.py
-# in addition to the same files located in /home/sel/documentation/AllSky
-
 # sys.path.insert(0, os.path.abspath('.'))
 # sys.path.append('.')
 
@@ -47,7 +33,7 @@ setup_cfg = dict(conf.items('metadata'))
 # specific version check, call check_sphinx_version("x.y.z.") from
 # your project's conf.py
 # needs_sphinx = '1.7'
-highlight_language = 'python3'
+# highlight_language = 'python3'
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 __import__(setup_cfg['package_name'])
