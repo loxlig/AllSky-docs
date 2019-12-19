@@ -36,8 +36,8 @@ import sphinx
 # highlight_language = 'python3'
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-__import__(setup_cfg['package_name'])
-package = sys.modules[setup_cfg['package_name']]
+# __import__(setup_cfg['package_name'])
+# package = sys.modules[setup_cfg['package_name']]
 
 html_theme_options = {
     'logotext1': 'all',  # white,  semi-bold
