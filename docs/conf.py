@@ -214,9 +214,9 @@ html_sidebars = {
 # pixels large.
 
 # We include by default the favicon that is in the bootstrap-astropy theme.
-import astropy_sphinx_theme
-html_theme_path = astropy_sphinx_theme.get_html_theme_path()
-html_favicon = os.path.join(html_theme_path[0], html_theme, 'static', 'astropy_logo.ico')
+# import astropy_sphinx_theme
+# html_theme_path = astropy_sphinx_theme.get_html_theme_path()# 
+# html_favicon = os.path.join(html_theme_path[0], html_theme, 'static', 'astropy_logo.ico')
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
