@@ -148,7 +148,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
-    'numpydoc',
+    # 'numpydoc',
     # 'sphinx_astropy.ext.doctest',
     # 'sphinx_astropy.ext.changelog_links',
     # 'sphinx_astropy.ext.missing_static',
@@ -167,7 +167,7 @@ extensions = [
 
 # Don't show summaries of the members in each class along with the
 # class' docstring
-numpydoc_show_class_members = False
+# numpydoc_show_class_members = False
 
 autosummary_generate = True
 
