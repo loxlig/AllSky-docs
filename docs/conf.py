@@ -11,11 +11,27 @@
 
 import sys
 import os
-import warnings
-from os import path
+# import warnings
+# from os import path
 
 import sphinx
-from distutils.version import LooseVersion
+# from distutils.version import LooseVersion
+try:
+    from sphinx_astropy.conf.v1 import *
+except ImportError:
+    print('ERROR: the documentation requires the sphinx-astropy package to be installed')
+    sys.exit(1)
+    
+# Get configuration information from setup.cfg
+try:
+    from ConfigParser import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+conf = ConfigParser()
+
+conf.read([os.path.join(os.path.dirname(__file__), '..', 'setup.cfg')])
+setup_cfg = dict(conf.items('metadata'))
+
 
 # Must keep copy of source files in /home/sel/documentation/*.py
 # in addition to the same files located in /home/sel/documentation/AllSky
@@ -30,11 +46,18 @@ from distutils.version import LooseVersion
 # minor parts of the version number, not the micro.  To do a more
 # specific version check, call check_sphinx_version("x.y.z.") from
 # your project's conf.py
-needs_sphinx = '1.7'
-
+# needs_sphinx = '1.7'
+highlight_language = 'python3'
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+__import__(setup_cfg['package_name'])
+package = sys.modules[setup_cfg['package_name']]
 
+html_theme_options = {
+    'logotext1': 'all',  # white,  semi-bold
+    'logotext2': 'sky',  # orange, light
+    'logotext3': ':docs'   # white,  light
+}
 
 def check_sphinx_version(expected_version):
     sphinx_version = LooseVersion(sphinx.__version__)
@@ -47,21 +70,27 @@ def check_sphinx_version(expected_version):
 
 
 # Configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {
-    'python': ('https://docs.python.org/3/',
-               (None, 'http://data.astropy.org/intersphinx/python3.inv')),
-    'pythonloc': ('http://docs.python.org/',
-                  path.abspath(path.join(path.dirname(__file__), '..',
-                                         'local', 'python3_local_links.inv'))),
-    'numpy': ('https://docs.scipy.org/doc/numpy/',
-              (None, 'http://data.astropy.org/intersphinx/numpy.inv')),
-    'scipy': ('https://docs.scipy.org/doc/scipy/reference/',
-              (None, 'http://data.astropy.org/intersphinx/scipy.inv')),
-    'matplotlib': ('https://matplotlib.org/',
-                   (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
-    'astropy': ('http://docs.astropy.org/en/stable/', None),
-    'h5py': ('http://docs.h5py.org/en/stable/', None)}
+# intersphinx_mapping = {
+#    'python': ('https://docs.python.org/3/',
+#               (None, 'http://data.astropy.org/intersphinx/python3.inv')),
+#    'pythonloc': ('http://docs.python.org/',
+#                  path.abspath(path.join(path.dirname(__file__), '..',
+#                                         'local', 'python3_local_links.inv'))),
+#    'numpy': ('https://docs.scipy.org/doc/numpy/',
+#              (None, 'http://data.astropy.org/intersphinx/numpy.inv')),
+#    'scipy': ('https://docs.scipy.org/doc/scipy/reference/',
+#              (None, 'http://data.astropy.org/intersphinx/scipy.inv')),
+#    'matplotlib': ('https://matplotlib.org/',
+#                   (None, 'http://data.astropy.org/intersphinx/matplotlib.inv')),
+#    'astropy': ('http://docs.astropy.org/en/stable/', None),
+#    'h5py': ('http://docs.h5py.org/en/stable/', None)}
 
+
+ntersphinx_mapping['astroquery'] = (
+    'https://astroquery.readthedocs.io/en/latest/', None)
+
+intersphinx_mapping['syphot'] = (
+    'https://synphot.readthedocs.io/en/latest/', None)
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build']
@@ -231,6 +260,8 @@ html_last_updated_fmt = '%d %b %Y'
 # "<project> v<release> documentation".
 #html_title = None
 
+html_title = '{0} v{1}'.format(project, release)
+htmlhelp_basename = project + 'doc'
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
 
@@ -343,6 +374,26 @@ latex_elements['preamble'] = r"""
 #latex_logo = None
 
 # -- Options for the linkcheck builder ----------------------------------------
+# -- Options for the edit_on_github extension ---------------------------------
+
+if eval(setup_cfg.get('edit_on_github')):
+    extensions += ['sphinx_astropy.ext.edit_on_github',
+                   'sphinx.ext.intersphinx']
+
+    versionmod = __import__(setup_cfg['package_name'] + '.version')
+    edit_on_github_project = setup_cfg['github_project']
+    if versionmod.version.release:
+        edit_on_github_branch = "v" + versionmod.version.version
+    else:
+        edit_on_github_branch = "master"
+
+    edit_on_github_source_root = ""
+    edit_on_github_doc_root = "docs"
+
+# -- Resolving issue number to links in changelog -----------------------------
+github_issues_url = 'https://github.com/{0}/issues/'.format(
+    setup_cfg['github_project'])
+
 
 # A timeout value, in seconds, for the linkcheck builder
 linkcheck_timeout = 60
