@@ -359,26 +359,5 @@ latex_elements['preamble'] = r"""
 # the title page.
 #latex_logo = None
 
-# -- Options for the linkcheck builder ----------------------------------------
-# -- Options for the edit_on_github extension ---------------------------------
-
-if eval(setup_cfg.get('edit_on_github')):
-    extensions += ['sphinx.ext.intersphinx']
-
-    versionmod = __import__(setup_cfg['package_name'] + '.version')
-    edit_on_github_project = setup_cfg['github_project']
-    if versionmod.version.release:
-        edit_on_github_branch = "v" + versionmod.version.version
-    else:
-        edit_on_github_branch = "master"
-
-    edit_on_github_source_root = ""
-    edit_on_github_doc_root = "docs"
-
-# -- Resolving issue number to links in changelog -----------------------------
-github_issues_url = 'https://github.com/{0}/issues/'.format(
-    setup_cfg['github_project'])
-
-
 # A timeout value, in seconds, for the linkcheck builder
 linkcheck_timeout = 60
